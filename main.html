@@ -1,20 +1,38 @@
 <!DOCTYPE html>
-
 <html>
-  <head>
+<head>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-
-  <body>
-    <!-- the entire body must be written by student -->
+</head>
+<body>
     <form onsubmit="return false">
-      <input type="text" id="text" placeholder="Text" />
-      <input type="number" id="delay" placeholder="Delay" />
-      <button type="button" id="btn">Submit</button>
+        <input type="text" id="text" placeholder="Text" />
+        <input type="number" id="delay" placeholder="Delay" />
+        <button type="button" id="btn">Submit</button>
     </form>
 
     <div id="output"></div>
 
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+    <script type="text/javascript">
+        // Function to return a promise that resolves after a given time
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Async function to handle the delay and update the output
+        async function handleSubmit() {
+            // Retrieve user inputs
+            const text = document.getElementById('text').value;
+            const delayTime = parseInt(document.getElementById('delay').value);
+
+            // Wait for the specified delay
+            await delay(delayTime);
+
+            // Update the output div with the provided text
+            document.getElementById('output').innerText = text;
+        }
+
+        // Add event listener to the button
+        document.getElementById('btn').addEventListener('click', handleSubmit);
+    </script>
+</body>
 </html>
